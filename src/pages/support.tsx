@@ -38,7 +38,8 @@ export default function Support(props: Props) {
           <p>* No project/token/NFT shilling or promotions!</p>
         </section>
 
-        <section>
+        {/* TODO: Add back in */}
+        {/* <section>
           <h3>Newsletter</h3>
           <p>Newsletter sponsoring offers the most flexible option to promote any specific product, services or other announcements.</p>
           <p>
@@ -68,22 +69,23 @@ export default function Support(props: Props) {
             <li>Link: to website or CTA</li>
             <li>Twitter account: will be tagged whenever the newsletter goes out, thanking you for supporting our mission</li>
           </ul>
-        </section>
+        </section> */}
 
         <section>
           <h3>Payments &amp; Donations</h3>
-          <p>All payments can be made using ETH/DAI/UDSC on Mainnet/Arbitrum/Optimism</p>
+          <p>All payments can be made using SOL/USDC on Solana Mainnet</p>
           <p>If you want to support our mission and help on-board more people into Web3 & Crypto, any donations are also much appreciated.</p>
           <ul>
             <li>
               Address: <Link href={`https://etherscan.io/address/${RECEIVER_ADDRESS}`}>{RECEIVER_ADDRESS}</Link>
             </li>
-            <li>
+            {/* TODO: Add back in */}
+            {/* <li>
               ENS: <Link href={`https://etherscan.io/enslookup-search?search=${RECEIVER_ENS}`}>{RECEIVER_ENS}</Link>
             </li>
             <li>
               <Link href={GITCOIN_GRANT}>Gitcoin Grants</Link>
-            </li>
+            </li> */}
           </ul>
         </section>
 
@@ -92,10 +94,10 @@ export default function Support(props: Props) {
           <p>
             Thank you so much for your consideration and support.
             <br />
-            useWeb3 is a bootstrapped, indie-project by <Link href="https://twitter.com/wslyvh">@wslyvh</Link>. Your support helps to on-board more
-            devs into the Web3/crypto ecosystem.
+            useWeb3 is a bootstrapped, indie-project by <Link href="https://twitter.com/sarkazein">@sarkazein7</Link>. Your support helps to on-board
+            more devs into the Web3/crypto ecosystem.
           </p>
-          <p>🙏 Wesley</p>
+          <p>🙏 Sarkazein</p>
         </section>
       </TopnavLayout>
     </NavigationProvider>
