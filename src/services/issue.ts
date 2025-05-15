@@ -12,88 +12,108 @@ if (!process.env.ISSUES_GITHUB_TOKEN) {
 const cache = new Map()
 const defaultSince = moment().subtract(1, 'year')
 const orgs = [
+  'solana-labs',
+  'helius-labs',
+  'saber-hq',
+  'anza-xyz',
+
+  // Wallets
+  'coral-xyz',
+  'solflare-wallet',
+  'jup-ag',
+
+  // DEXs
+  'raydium-io',
+  'drift-labs',
+
+  // AI
+  'sendaifun',
+
+  //Defi
+  'streamflow-finance',
+  'pyth-network',
   // Protocol
-  'ethereum',
+  // 'ethereum',
   // Applied ZK
-  'privacy-scaling-explorations',
-  'semaphore-protocol',
-  'zkopru-network',
-  'quadratic-funding',
-  'web3well',
-  'Zokrates',
-  'bandada-infra',
-  'anon-aadhaar',
+  // 'privacy-scaling-explorations',
+  // 'semaphore-protocol',
+  // 'zkopru-network',
+  // 'quadratic-funding',
+  // 'web3well',
+  // 'Zokrates',
+  // 'bandada-infra',
+  // 'anon-aadhaar',
   // Dev tooling & infra
-  'NomicFoundation',
-  'dethcrypto',
-  'crytic',
-  'trailofbits',
-  'scaffold-eth',
-  'blockchain-etl',
-  'ethereum-lists',
-  'ChainAgnostic',
-  'Web3Modal',
-  'TrueFiEng',
-  'WalletConnect',
-  'smartcontractkit',
-  'TrueBlocks',
-  'OpenZeppelin',
-  'blockscout',
-  'otterscan',
-  'lambdaclass',
-  'ethereum-attestation-service',
-  'RevokeCash',
-  'ensdomains',
-  'wslyvh',
-  'gobitfly',
-  'waku-org',
-  'ethereum-push-notification-service',
+  // 'NomicFoundation',
+  // 'dethcrypto',
+  // 'crytic',
+  // 'trailofbits',
+  // 'scaffold-eth',
+  // 'blockchain-etl',
+  // 'ethereum-lists',
+  // 'ChainAgnostic',
+  // 'Web3Modal',
+  // 'TrueFiEng',
+  // 'WalletConnect',
+  // 'smartcontractkit',
+  // 'TrueBlocks',
+  // 'OpenZeppelin',
+  // 'blockscout',
+  // 'otterscan',
+  // 'lambdaclass',
+  // 'ethereum-attestation-service',
+  // 'RevokeCash',
+  // 'ensdomains',
+  // 'wslyvh',
+  // 'gobitfly',
+  // 'waku-org',
+  // 'ethereum-push-notification-service',
   // Libs & SDKs
-  'eth-brownie',
-  'dapphub',
-  'foundry-rs',
-  'vyperlang',
-  'ethereumjs',
-  'ethers-io',
-  'web3',
-  'web3ui',
-  'web3p',
-  'web3j',
-  'wagmi-dev',
-  'wevm',
-  'ApeWorX',
-  'Nethereum',
+  // 'eth-brownie',
+  // 'dapphub',
+  // 'foundry-rs',
+  // 'vyperlang',
+  // 'ethereumjs',
+  // 'ethers-io',
+  // 'web3',
+  // 'web3ui',
+  // 'web3p',
+  // 'web3j',
+  // 'wagmi-dev',
+  // 'wevm',
+  // 'ApeWorX',
+  // 'Nethereum',
   // CL
-  'prysmaticlabs',
-  'sigp',
-  'ConsenSys',
-  'status-im',
-  'ChainSafe', // Prysm, Lighthouse, Teku, Nimbus, lodestar
+  // 'prysmaticlabs',
+  // 'sigp',
+  // 'ConsenSys',
+  // 'status-im',
+  // 'ChainSafe', // Prysm, Lighthouse, Teku, Nimbus, lodestar
   // EL:
-  'ledgerwatch',
-  'NethermindEth',
-  'paradigmxyz',
-  'hyperledger', // 'ethereum' (geth), Erigon, Nethermind, Besu
+  // 'ledgerwatch',
+  // 'NethermindEth',
+  // 'paradigmxyz',
+  // 'hyperledger', // 'ethereum' (geth), Erigon, Nethermind, Besu
   // L2/scalability:
-  'l2beat',
-  'ethereum-optimism',
-  'ArbitrumFoundation',
-  'OffchainLabs',
-  'matter-labs',
-  'hermeznetwork',
-  'maticnetwork',
-  'AztecProtocol',
-  'base-org',
-  'scroll-tech',
-  'coinbase',
-  'FuelLabs',
-  'starkware-libs',
-  '0xPolygon',
-  '0xPolygonHermez',
+  // 'l2beat',
+  // 'ethereum-optimism',
+  // 'ArbitrumFoundation',
+  // 'OffchainLabs',
+  // 'matter-labs',
+  // 'hermeznetwork',
+  // 'maticnetwork',
+  // 'AztecProtocol',
+  // 'base-org',
+  // 'scroll-tech',
+  // 'coinbase',
+  // 'FuelLabs',
+  // 'starkware-libs',
+  // '0xPolygon',
+  // '0xPolygonHermez',
   // cryptography - mpc and fhe
-  'nillion-oss',
-  'Inco-fhevm',
-  'zama-ai',
+  // 'nillion-oss',
+  // 'Inco-fhevm',
+  // 'zama-ai',
 ]
 const orgString = `org:${orgs.join(' org:')}`
 
@@ -190,14 +210,28 @@ export async function GetRepos(since: moment.Moment = defaultSince): Promise<Rep
   return repos
 }
 
-export async function GetIssues(since: moment.Moment = defaultSince): Promise<Issue[]> {
-  const cacheKey = `issues.GetIssues-since:${since.toISOString()}`
+interface IssueFilter {
+  goodFirstIssue?: boolean
+}
+
+export async function GetIssues(since: moment.Moment = defaultSince, filters: IssueFilter = {}): Promise<Issue[]> {
+  // Create a unique cache key based on filters
+  const filterStr = JSON.stringify(filters)
+  const cacheKey = `issues.GetIssues-since:${since.toISOString()}-filters:${filterStr}`
   if (cache.has(cacheKey)) {
     return cache.get(cacheKey)
   }
 
   let issues: Issue[] = []
   let cursor: string | undefined = ''
+  // Build the label filter string
+  let labelFilter = ''
+  if (filters.goodFirstIssue) {
+    labelFilter = 'label:\\"good first issue\\"'
+  }
+  // No else clause - leave labelFilter empty if no filters are applied
+
+  const queryString = `${orgString} is:open is:issue ${labelFilter} created:>${since.toISOString()} sort:created`
 
   while (cursor !== undefined) {
     const response = await fetch('https://api.github.com/graphql', {
@@ -212,7 +246,7 @@ export async function GetIssues(since: moment.Moment = defaultSince): Promise<Is
           search(
             first: 100, 
             ${cursor}
-            query: "${orgString} is:open is:issue label:\\"good first issue\\",\\"help wanted\\" created:>${since.toISOString()} sort:created",
+            query: "${queryString}",
             type: ISSUE
           ) {
             issueCount

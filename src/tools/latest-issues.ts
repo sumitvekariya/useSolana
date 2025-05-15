@@ -21,7 +21,7 @@ async function run() {
   }
 
   // Send 1st tweet
-  let first = `Contribute to open-source Web3 projects ✨\n\n`
+  let first = `Contribute to open-source Solana projects ✨\n\n`
   first += `Make your first contribution to any of these 'good first'-issues below 🌈\n\n`
   first += `${issues.length} new issues this week 🛠️`
 

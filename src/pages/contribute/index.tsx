@@ -1,7 +1,7 @@
 import React from 'react'
 import { ParsedUrlQuery } from 'querystring'
 import { ContentItem } from 'types/content-item'
-import { GetStaticProps } from 'next'
+import { GetServerSideProps } from 'next'
 import { Category } from 'types/category'
 import { NavigationProvider } from 'context/navigation'
 import { DEFAULT_MAX_ITEMS, DEFAULT_REVALIDATE_PERIOD } from 'utils/constants'
@@ -22,6 +22,7 @@ interface Props {
 
 interface Params extends ParsedUrlQuery {
   category: string
+  goodFirstIssue?: string
 }
 
 export default function Index(props: Props) {
@@ -30,20 +31,28 @@ export default function Index(props: Props) {
       <SEO
         title="Contribute"
         divider="✨"
-        description="Make your first contribution to any open-source Web3 project by tackling on of these 'Good first' issues."
+        description="Make your first contribution to any open-source Solana project by tackling on of these 'Good first' issues."
       />
-      <TopnavLayout className={styles.container} title="Contribute to open-source Web3 projects">
-        <IssuesOverview results={props.results} />
+      <TopnavLayout className={styles.container} title="Contribute to open-source Solana projects">
+        <IssuesOverview
+          results={props.results}
+          onFilterChange={(filters) => {
+            // This is handled via URL updates in the IssuesOverview component
+          }}
+        />
       </TopnavLayout>
     </NavigationProvider>
   )
 }
 
-export const getStaticProps: GetStaticProps<Props, Params> = async () => {
+export const getServerSideProps: GetServerSideProps<Props, Params> = async (context) => {
+  const { query } = context
+  const goodFirstIssue = query.goodFirstIssue === 'true'
+
   const service = new MarkdownContentService()
   const items = await service.GetItems('', true)
   const categories = await service.GetCategories()
-  const issues = await GetIssues()
+  const issues = await GetIssues(undefined, { goodFirstIssue })
 
   const repos = await GetRepos()
 
@@ -57,6 +66,5 @@ export const getStaticProps: GetStaticProps<Props, Params> = async () => {
         items: issues.slice(0, DEFAULT_MAX_ITEMS),
       },
     },
-    revalidate: DEFAULT_REVALIDATE_PERIOD,
   }
 }

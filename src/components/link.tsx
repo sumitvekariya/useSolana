@@ -1,8 +1,9 @@
 import React, { ReactNode } from 'react'
 import { default as NextLink } from 'next/link'
+import { UrlObject } from 'url'
 
 interface LinkProps {
-  href: string
+  href: string | UrlObject
   newWindow?: boolean
   className?: string
   children: ReactNode
@@ -10,11 +11,11 @@ interface LinkProps {
 
 export function Link(props: LinkProps) {
   const className = props.className ?? ''
-  const isExternal = props.href.match(/^([a-z0-9]*:|.{0})\/\/.*$/)
+  const isExternal = typeof props.href === 'string' && props.href.match(/^([a-z0-9]*:|.{0})\/\/.*$/)
 
   if (isExternal || props.newWindow) {
     return (
-      <a href={props.href} className={className} target="_blank" rel="noopener noreferrer">
+      <a href={typeof props.href === 'string' ? props.href : '#'} className={className} target="_blank" rel="noopener noreferrer">
         {props.children}
       </a>
     )
@@ -22,9 +23,7 @@ export function Link(props: LinkProps) {
 
   return (
     <NextLink href={props.href} passHref>
-      <a href={props.href} className={className}>
-        {props.children}
-      </a>
+      <a className={className}>{props.children}</a>
     </NextLink>
   )
 }

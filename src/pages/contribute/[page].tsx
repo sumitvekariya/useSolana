@@ -1,10 +1,10 @@
 import React from 'react'
 import { ParsedUrlQuery } from 'querystring'
 import { ContentItem } from 'types/content-item'
-import { GetStaticPaths, GetStaticProps } from 'next'
+import { GetServerSideProps } from 'next'
 import { Category } from 'types/category'
 import { NavigationProvider } from 'context/navigation'
-import { DEFAULT_MAX_ITEMS, DEFAULT_REVALIDATE_PERIOD } from 'utils/constants'
+import { DEFAULT_MAX_ITEMS } from 'utils/constants'
 import styles from '../pages.module.scss'
 import { MarkdownContentService } from 'services/content'
 import { TopnavLayout } from 'components/layouts/topnav'
@@ -22,6 +22,7 @@ interface Props {
 
 interface Params extends ParsedUrlQuery {
   page: string
+  goodFirstIssue?: string
 }
 
 export default function Index(props: Props) {
@@ -30,36 +31,29 @@ export default function Index(props: Props) {
       <SEO
         title="Contribute"
         divider="✨"
-        description="Make your first contribution to any open-source Web3 project by tackling on of these 'Good first' issues."
+        description="Make your first contribution to any open-source Solana project by tackling on of these 'Good first' issues."
       />
-      <TopnavLayout className={styles.container} title="Contribute to open-source Web3 projects">
-        <IssuesOverview results={props.results} />
+      <TopnavLayout className={styles.container} title="Contribute to open-source Solana projects">
+        <IssuesOverview
+          results={props.results}
+          onFilterChange={(filters) => {
+            // This is handled via URL updates in the IssuesOverview component
+          }}
+        />
       </TopnavLayout>
     </NavigationProvider>
   )
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const issues = await GetIssues()
-  const pages = Math.ceil(issues.length / DEFAULT_MAX_ITEMS)
-  const pagesToGenerate = Array.from({ length: pages }, (i, index) => index + 1)
-
-  return {
-    paths: pagesToGenerate.map((i) => {
-      return {
-        params: { page: String(i) },
-      }
-    }),
-    fallback: true,
-  }
-}
-
-export const getStaticProps: GetStaticProps<Props, Params> = async (context) => {
+export const getServerSideProps: GetServerSideProps<Props, Params> = async (context) => {
   const page = Number(context.params?.page) ?? 1
+  const { query } = context
+  const goodFirstIssue = query.goodFirstIssue === 'true'
+
   const service = new MarkdownContentService()
   const items = await service.GetItems('', true)
   const categories = await service.GetCategories()
-  const issues = await GetIssues()
+  const issues = await GetIssues(undefined, { goodFirstIssue })
 
   return {
     props: {
@@ -71,6 +65,5 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (context) => 
         items: issues.slice((page - 1) * DEFAULT_MAX_ITEMS, page * DEFAULT_MAX_ITEMS),
       },
     },
-    revalidate: DEFAULT_REVALIDATE_PERIOD,
   }
 }

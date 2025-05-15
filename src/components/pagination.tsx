@@ -9,6 +9,7 @@ type Props = {
   currentPage: number
   truncate?: boolean
   className?: string
+  getLinkProps?: (page: number) => string | { pathname: string; query?: any }
 }
 
 export const Pagination = (props: Props) => {
@@ -59,33 +60,48 @@ export const Pagination = (props: Props) => {
     <ul className={className}>
       <li>
         {props.currentPage === 1 && <i className={`${styles.disabled} bi bi-chevron-left`} />}
-        {props.currentPage > 1 && (
-          <Link href={`${baseUri}/${props.currentPage === 1 ? 1 : props.currentPage - 1}`}>
-            <i className="bi bi-chevron-left" />
-          </Link>
-        )}
+        {props.currentPage > 1 && 
+          (props.getLinkProps ? (
+            <Link href={props.getLinkProps(props.currentPage - 1)}>
+              <i className="bi bi-chevron-left" />
+            </Link>
+          ) : (
+            <Link href={`${baseUri}/${props.currentPage === 1 ? 1 : props.currentPage - 1}`}>
+              <i className="bi bi-chevron-left" />
+            </Link>
+          ))}
       </li>
 
       {pagesToShow().map((i, index) => {
         return (
           <li key={`pagination_${className}_${index}`}>
             {typeof i === 'string' && <i className={styles.disabled}>...</i>}
-            {typeof i === 'number' && (
-              <Link href={`${baseUri}/${i}`} className={props.currentPage === i ? styles.selected : ''}>
-                {i}
-              </Link>
-            )}
+            {typeof i === 'number' && 
+              (props.getLinkProps ? (
+                <Link href={props.getLinkProps(i)} className={props.currentPage === i ? styles.selected : ''}>
+                  {i}
+                </Link>
+              ) : (
+                <Link href={`${baseUri}/${i}`} className={props.currentPage === i ? styles.selected : ''}>
+                  {i}
+                </Link>
+              ))}
           </li>
         )
       })}
 
       <li>
         {props.currentPage === totalPages && <i className={`${styles.disabled} bi bi-chevron-right`} />}
-        {props.currentPage < totalPages && (
-          <Link href={`${baseUri}/${props.currentPage === totalPages ? totalPages : props.currentPage + 1}`}>
-            <i className="bi bi-chevron-right" />
-          </Link>
-        )}
+        {props.currentPage < totalPages && 
+          (props.getLinkProps ? (
+            <Link href={props.getLinkProps(props.currentPage + 1)}>
+              <i className="bi bi-chevron-right" />
+            </Link>
+          ) : (
+            <Link href={`${baseUri}/${props.currentPage === totalPages ? totalPages : props.currentPage + 1}`}>
+              <i className="bi bi-chevron-right" />
+            </Link>
+          ))}
       </li>
     </ul>
   )
