@@ -5,9 +5,71 @@
     margin-bottom: $gap-16;
   }
 
+  .controlsHeader {
+    display: flex;
+    justify-content: space-between; /* This will push filters to the left and pagination to the right */
+    align-items: center;            /* This vertically centers the filters group and pagination */
+    margin-bottom: 1rem;          /* Adjust spacing as needed */
+  }
+  
+  .filters {
+    display: flex;
+    align-items: center; /* This ensures labels inside .filters are vertically aligned if they have different heights */
+    gap: 1rem;           /* This adds spacing between the "Good first issue" and "Help wanted" labels */
+  
+    label {
+      display: flex;
+      align-items: center; /* This vertically centers the checkbox and its text */
+      gap: 0.25rem;        /* This adds a small space between the checkbox and its text label */
+      cursor: pointer;     /* Improves UX for clickable labels */
+    }
+  }
+
+  .loadingState {
+    text-align: center;
+    padding: 2rem;
+    font-weight: 500;
+    color: #666;
+  }
+
   .pagination {
     display: flex;
     justify-content: flex-end;
     margin: $gap-16 0;
+  }
+}
+
+.paginationContainer {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+  
+  li {
+    margin: 0 0.5rem;
+    display: flex;
+    
+    a, span {
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      font-weight: 500;
+      text-decoration: none;
+    }
+    
+    a {
+      background-color: #f0f0f0;
+      color: #333;
+      transition: background-color 0.2s;
+      
+      &:hover {
+        background-color: #e0e0e0;
+      }
+    }
+    
+    .disabled {
+      color: #999;
+      cursor: not-allowed;
+    }
   }
 }
