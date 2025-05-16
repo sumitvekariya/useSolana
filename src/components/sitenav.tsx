@@ -78,7 +78,7 @@ export function Sitenav(props: Props) {
           </Link>
         </li>
         <li>
-          <Link href="https://github.com/wslyvh/useWeb3/tree/main/content">
+          <Link href="https://github.com/sumitvekariya/useSolana/tree/main/content">
             <span role="img" aria-label="submit">
               🔗
             </span>

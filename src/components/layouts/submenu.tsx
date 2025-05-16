@@ -89,17 +89,17 @@ export function MobileSubmenu(props: Props) {
         <div className={styles.credits}>
           <ul>
             <li className={styles.icon}>
-              <Link href="https://github.com/wslyvh/useWeb3">
+              <Link href="https://github.com/sumitvekariya/useSolana">
                 <i className="bi bi-github" />
               </Link>
             </li>
             <li className={styles.icon}>
-              <Link href="https://twitter.com/useWeb3">
+              <Link href="https://twitter.com/sarkazein7">
                 <i className="bi bi-twitter" />
               </Link>
             </li>
             <li>
-              by <Link href="https://twitter.com/wslyvh">@wslyvh</Link>
+              by <Link href="https://twitter.com/sarkazein7">@sarkazein7</Link>
             </li>
           </ul>
         </div>

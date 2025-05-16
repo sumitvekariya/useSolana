@@ -23,8 +23,8 @@
 
 ### Additional Notes
 
-- Please check and use existing tags from the site https://www.useweb3.xyz/tags - Do not use any other tags. If you feel like something is missing, please create a separate issue/PR.
-- Please check and use existing programming languages from the site https://www.useweb3.xyz/tags - Feel free to add new languages, but only submit actual programming languages (not protocols or other tags).
+- Please check and use existing tags from the site https://www.usesolana.xyz/tags - Do not use any other tags. If you feel like something is missing, please create a separate issue/PR.
+- Please check and use existing programming languages from the site https://www.usesolana.xyz/tags - Feel free to add new languages, but only submit actual programming languages (not protocols or other tags).
 
 
 Thank you for your contribution!

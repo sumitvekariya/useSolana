@@ -44,15 +44,15 @@ async function run() {
 
   console.log('### 🤝 Connect')
   console.log(
-    'Follow [@useWeb3](https://twitter.com/useWeb3) on Twitter for more regular updates, the latest items and learning about Web3 development. Follow [@wslyvh](https://twitter.com/wslyvh) for building in Web3, open-source software, decentralization and other updates in the ecosystem.'
+    'Follow [@useSolana](https://twitter.com/useSolana) on Twitter for more regular updates, the latest items and learning about Solana development. Follow [@sarkazein7](https://twitter.com/sarkazein7) for building in Solana, open-source software, decentralization and other updates in the ecosystem.'
   )
   console.log()
 
   await upcomingEvents()
 
-  console.log('### 🌱 Support useWeb3')
+  console.log('### 🌱 Support useSolana')
   console.log(
-    'useWeb3 has a diverse, globally distributed community of Web3-/crypto curious. A technical audience, including designers, researchers and other builders (e.g community builders, content creators, founders, etc..). If you want to support, sponsor or collaborate, check out https://www.useweb3.xyz/support'
+    'useSolana has a diverse, globally distributed community of Solana/crypto curious. A technical audience, including designers, researchers and other builders (e.g community builders, content creators, founders, etc..). If you want to support, sponsor or collaborate, check out https://www.usesolana.xyz/support'
   )
 }
 
@@ -63,12 +63,12 @@ async function latestResources() {
   const recent = items.filter((i) => moment(i.dateAdded) >= since)
 
   console.log(`### 📚 Resources`)
-  console.log(`Here are the latest resources for you to learn about Web3`)
+  console.log(`Here are the latest resources for you to learn about Solana`)
   console.log()
 
   for (const item of recent) {
     const category = categories.find((i) => i.id === item.category.id)
-    console.log(`- ${category?.emoji} ${item.title} https://www.useweb3.xyz/${item.category.id}/${item.id}`)
+    console.log(`- ${category?.emoji} ${item.title} https://www.usesolana.xyz/${item.category.id}/${item.id}`)
   }
 
   console.log()

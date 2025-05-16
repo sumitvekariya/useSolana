@@ -33,7 +33,7 @@ export default function Index(props: Props) {
         divider="✨"
         description="Make your first contribution to any open-source Solana project by tackling on of these 'Good first' issues."
       />
-      <TopnavLayout className={styles.container} title="Contribute to open-source Solana projects">
+      <TopnavLayout className={styles.container} title="Contribute to open-source Solana projects" hideNewsletter={true}>
         <IssuesOverview
           results={props.results}
           onFilterChange={(filters) => {

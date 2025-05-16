@@ -8,12 +8,12 @@ dotenv.config()
 console.log('Tweet top resources')
 run()
 
-const EXCLUDE = ['https://github.com/wslyvh/useWeb3/tree/main/content']
+const EXCLUDE = ['https://github.com/sumitvekariya/useSolana/tree/main/content']
 
 async function run() {
   // Top resources / outside clicks
   const response = await fetch(
-    `https://plausible.io/api/v1/stats/breakdown?site_id=useweb3.xyz&period=7d&property=event:props:url&filters=event:name==Outbound+Link%3A+Click`,
+    `https://plausible.io/api/v1/stats/breakdown?site_id=usesolana.xyz&period=7d&property=event:props:url&filters=event:name==Outbound+Link%3A+Click`,
     {
       headers: { Authorization: `Bearer ${process.env.PLAUSIBLE_API_KEY}` },
     }
@@ -22,7 +22,7 @@ async function run() {
   const stats = body.results.splice(0, 10)
 
   // Most popular pages
-  const responsePopular = await fetch('https://plausible.io/api/v1/stats/breakdown?site_id=useweb3.xyz&period=7d&property=event:page&limit=20', {
+  const responsePopular = await fetch('https://plausible.io/api/v1/stats/breakdown?site_id=usesolana.xyz&period=7d&property=event:page&limit=20', {
     headers: { Authorization: `Bearer ${process.env.PLAUSIBLE_API_KEY}` },
   })
   const bodyPopular = await responsePopular.json()

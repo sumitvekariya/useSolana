@@ -39,7 +39,7 @@ async function run() {
   // Sent last tweet
   let last = `These are just the latest from last week..\n\n`
   last += `Browse more than +500 #OpenSource 'Good first'-issues on core protocol, developer tooling, infra, SDKs, consensus and execution clients, L2's, etc. 🛠️\n\n`
-  last += `https://www.useweb3.xyz/contribute`
+  last += `https://www.usesolana.xyz/contribute`
 
   await SendTweets([first, ...items, last])
 }

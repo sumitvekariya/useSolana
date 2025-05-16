@@ -1,12 +1,12 @@
 {
     "version": 1,
     "name": "Wallets",
-    "description": "Learn more about wallets, what they are, what they allow you to do and how you can use them to explore Web3.",
+    "description": "Learn more about wallets, what they are, what they allow you to do and how you can use them to explore Solana.",
     "level": "Beginner",
     "tags": ["Security", "Cryptography"],
     "image": "",
-    "website": "https://www.useweb3.xyz/",
-    "twitter": "useWeb3",
+    "website": "https://www.usesolana.xyz/",
+    "twitter": "useSolana",
     "reward": {
         "id": "poap",
         "params": {

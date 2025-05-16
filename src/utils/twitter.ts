@@ -1,5 +1,6 @@
 import { TwitterApi } from 'twitter-api-v2'
 
+// TODO: Add a new twitter tool for useSolana
 export async function SendTweet(text: string) {
   const client = new TwitterApi({
     appKey: process.env.TWITTER_CONSUMER_KEY ?? '',

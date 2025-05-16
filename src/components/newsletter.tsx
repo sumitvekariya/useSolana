@@ -10,6 +10,7 @@ interface Props {
   className?: string
 }
 
+// TODO: Add a new newsletter for useSolana
 export function Newsletter(props: Props) {
   const plausible = usePlausible()
   let className = `${styles.container}`
@@ -24,7 +25,7 @@ export function Newsletter(props: Props) {
         <p className={styles.description}>{description}</p>
 
         <div className={styles.responsive}>
-          <iframe src="https://useweb3.substack.com/embed" />
+          <iframe src="https://usesolana.substack.com/embed" />
         </div>
       </section>
     </Panel>

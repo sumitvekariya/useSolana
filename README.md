@@ -1,12 +1,12 @@
-# useWeb3
+# useSolana
 
-useWeb3 is a learning platform for developers to explore and learn about Web3. Whether you’re a new dev getting your hands dirty for the first time, or a seasoned developer making the transition into the Web3 space. 
+useSolana is a learning platform for developers to explore and learn about Solana development. Whether you're a new dev getting your hands dirty for the first time, or a seasoned developer making the transition into the Solana ecosystem.
 
-Explore the latest resources, tutorials, challenges, tools, courses and boilerplates and start learning. Once you’re ready, browse the job board to land a job at some of the leading companies that work on core, open-source infrastructure, products, tools, frameworks, DAO's, etc.
+Explore the latest resources, tutorials, challenges, tools, courses and boilerplates and start learning. Once you're ready, browse the job board to land a job at some of the leading companies that work on core, open-source infrastructure, products, tools, frameworks, programs, etc.
 
 Explore. Learn. Build.
 
-https://www.useweb3.xyz/
+https://www.usesolana.xyz/
 
 <!-- TABLE OF CONTENTS -->
 &nbsp;
@@ -26,9 +26,9 @@ This is an example of how you can set up your project locally. To get a local co
 1. Clone the repo
 
 ```sh
-git clone with HTTPS          https://github.com/wslyvh/useWeb3.git
-git clone with SSH            git@github.com:wslyvh/useWeb3.git
-git clone with Github CLI     gh repo clone wslyvh/useWeb3
+git clone with HTTPS          https://github.com/yourorg/useSolana.git
+git clone with SSH            git@github.com:yourorg/useSolana.git
+git clone with Github CLI     gh repo clone yourorg/useSolana
 ```
 
 2. Run the project
@@ -65,7 +65,7 @@ Variables:
 ```
 
 ## Twitter Schedule
-useWeb3 Schedules
+useSolana Schedules
 
 - Random daily resource: "30 15 * * *" - daily 
 - Most popular (categories): "0 15 * * 0" - sunday
@@ -78,4 +78,4 @@ useWeb3 Schedules
 
 # Powered by
 
-[![Powered by Vercel](https://www.datocms-assets.com/31049/1618983297-powered-by-vercel.svg "Powered by Vercel")](https://vercel.com/?utm_source=useWeb3&utm_campaign=oss)
+[![Powered by Vercel](https://www.datocms-assets.com/31049/1618983297-powered-by-vercel.svg "Powered by Vercel")](https://vercel.com/?utm_source=useSolana&utm_campaign=oss)

@@ -28,13 +28,13 @@ export default function Index(props: Props) {
 
   return (
     <NavigationProvider categories={props.categories}>
-      <SEO title={`Web3 ${props.category.title}`} divider={props.category.emoji} description={props.category.description} />
+      <SEO title={`Solana ${props.category.title}`} divider={props.category.emoji} description={props.category.description} />
 
       <TopnavLayout
         className={styles.container}
-        title={`Web3 ${props.category.title}`}
+        title={`Solana ${props.category.title}`}
         action={{
-          href: `https://github.com/wslyvh/useWeb3/tree/main/content/${props.category.id}`,
+          href: `https://github.com/sumitvekariya/useSolana/tree/main/content/${props.category.id}`,
           text: `Submit ${props.category.title.endsWith('s') ? props.category.title.slice(0, -1) : props.category.title}`,
         }}>
         <FilteredOverview title={props.category.title} description={props.category.description} items={props.items} />

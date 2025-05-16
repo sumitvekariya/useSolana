@@ -9,7 +9,7 @@ import { MarkdownContentService } from 'services/content'
 import Link from 'next/link'
 import { TopnavLayout } from 'components/layouts/topnav'
 import { PricingNewsletter } from 'components/form/pricing'
-import { RECEIVER_ADDRESS, RECEIVER_ENS } from 'utils/jobs'
+import { RECEIVER_ADDRESS, RECEIVER_SNS } from 'utils/jobs'
 
 interface Props {
   categories: Array<Category>
@@ -19,11 +19,11 @@ export default function Support(props: Props) {
   return (
     <NavigationProvider categories={props.categories}>
       <SEO title="Support us" />
-      <TopnavLayout className={`${styles.container} markdown`} title="Support useWeb3" hideNewsletter>
+      <TopnavLayout className={`${styles.container} markdown`} title="Support useSolana" hideNewsletter>
         <section>
           <p>
-            useWeb3 has a very diverse, globally distributed community of Web3-/crypto curious. A technical audience, including designers, researchers
-            and other builders (e.g community builders, content creators, founders, etc..).
+            useSolana has a very diverse, globally distributed community of Solana-curious developers and enthusiasts. A technical audience, including
+            developers, designers, researchers and other builders (e.g community builders, content creators, founders, etc.).
           </p>
           <p>There are a few ways to contribute, collaborate or connect.</p>
         </section>
@@ -31,10 +31,11 @@ export default function Support(props: Props) {
         <section>
           <h3>Content</h3>
           <p>
-            All the content on useWeb3 is <Link href="https://github.com/wslyvh/useWeb3/tree/main/content">open and available on GitHub</Link>. If you
-            have any resources, videos, guides or other content that you want to promote, feel free to submit a PR.
+            All the content on useSolana is{' '}
+            <Link href="https://github.com/sumitvekariya/useSolana/tree/main/content">open and available on GitHub</Link>. If you have any resources,
+            videos, guides or other content that you want to promote, feel free to submit a PR.
           </p>
-          <p>The requirements are that it should be ecudational, open, accessible (free) and aligned with the values of crypto and Web3.</p>
+          <p>The requirements are that it should be educational, open, accessible (free) and aligned with the values of the Solana ecosystem.</p>
           <p>* No project/token/NFT shilling or promotions!</p>
         </section>
 
@@ -74,17 +75,17 @@ export default function Support(props: Props) {
         <section>
           <h3>Payments &amp; Donations</h3>
           <p>All payments can be made using SOL/USDC on Solana Mainnet</p>
-          <p>If you want to support our mission and help on-board more people into Web3 & Crypto, any donations are also much appreciated.</p>
+          <p>If you want to support our mission and help on-board more people into the Solana ecosystem, any donations are also much appreciated.</p>
           <ul>
             <li>
-              Address: <Link href={`https://etherscan.io/address/${RECEIVER_ADDRESS}`}>{RECEIVER_ADDRESS}</Link>
+              Solana Address: <Link href={`https://solscan.io/account/${RECEIVER_ADDRESS}`}>{RECEIVER_ADDRESS}</Link>
             </li>
             {/* TODO: Add back in */}
             {/* <li>
-              ENS: <Link href={`https://etherscan.io/enslookup-search?search=${RECEIVER_ENS}`}>{RECEIVER_ENS}</Link>
+              .SOL domain: <Link href="#">yourname.sol</Link>
             </li>
             <li>
-              <Link href={GITCOIN_GRANT}>Gitcoin Grants</Link>
+              <Link href="#">Superteam Grants</Link>
             </li> */}
           </ul>
         </section>
@@ -94,8 +95,8 @@ export default function Support(props: Props) {
           <p>
             Thank you so much for your consideration and support.
             <br />
-            useWeb3 is a bootstrapped, indie-project by <Link href="https://twitter.com/sarkazein">@sarkazein7</Link>. Your support helps to on-board
-            more devs into the Web3/crypto ecosystem.
+            useSolana is a bootstrapped, indie-project by <Link href="https://twitter.com/sarkazein">@sarkazein7</Link>. Your support helps to
+            on-board more developers into the Solana ecosystem.
           </p>
           <p>🙏 Sarkazein</p>
         </section>

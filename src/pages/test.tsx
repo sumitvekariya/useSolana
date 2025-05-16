@@ -67,7 +67,7 @@ export default function Index(props: Props) {
           <Panel fill>Fill</Panel>
         </p>
         <p>
-          <Panel href="https://www.useweb3.xyz/">useWeb3.xyz</Panel>
+          <Panel href="https://www.usesolana.xyz/">useSolana.xyz</Panel>
         </p>
 
         <p>

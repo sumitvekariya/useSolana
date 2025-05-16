@@ -3,6 +3,7 @@ import fetch from 'cross-fetch'
 
 dotenv.config()
 
+// TODO: Add a new github tool for useSolana
 export async function AddToGithub(filename: string, data: string, folder?: string) {
   console.log('Add file to Github', filename, folder)
   if (!process.env.ISSUES_GITHUB_TOKEN) {

@@ -103,9 +103,10 @@ export function IssuesOverview(props: Props) {
         />
       </Featured>
 
-      <article>
+      {/* TODO: Add back in */}
+      {/* <article>
         <GasNotifications type="oss" description='Sign up to receive the latest "Good First" issues in your mailbox.' />
-      </article>
+      </article> */}
 
       <div className={styles.controlsHeader}>
         <div className={styles.filters}>

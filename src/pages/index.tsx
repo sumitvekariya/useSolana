@@ -26,22 +26,22 @@ interface Params extends ParsedUrlQuery {
 export default function Index(props: Props) {
   return (
     <NavigationProvider categories={props.categories}>
-      <TopnavLayout className={styles.container}>
+      <TopnavLayout className={styles.container} hideNewsletter={true}>
         <article>
           <p>
-            useWeb3 is a platform for developers to explore and learn about Web3. Whether you&apos;re a new dev getting your hands dirty for the first
-            time, or a seasoned developer making the transition into the Web3 space.
+            useSolana is a platform for developers to explore and learn about Solana. Whether you&apos;re a new dev getting your hands dirty for the
+            first time, or a seasoned developer making the transition into the Solana ecosystem.
           </p>
           <p>
-            <strong>Explore. Learn. Build.</strong>
+            <strong>Explore. Learn. Build on Solana.</strong>
           </p>
         </article>
 
         <article>
           <h2>Start learning</h2>
           <p>
-            Explore the latest resources and get familiar with the core concepts and fundamentals. Learning from tutorials, courses, books, videos or
-            code challenges and start building!
+            Explore the latest resources and get familiar with the core concepts and fundamentals of Solana. Learn from tutorials, courses, books,
+            videos or code challenges and start building on the fastest blockchain!
           </p>
         </article>
 
