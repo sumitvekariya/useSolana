@@ -60,15 +60,15 @@ export const Pagination = (props: Props) => {
     <ul className={className}>
       <li>
         {props.currentPage === 1 && <i className={`${styles.disabled} bi bi-chevron-left`} />}
-        {props.currentPage > 1 && 
+        {props.currentPage > 1 &&
           (props.getLinkProps ? (
             <Link href={props.getLinkProps(props.currentPage - 1)}>
               <i className="bi bi-chevron-left" />
             </Link>
           ) : (
-          <Link href={`${baseUri}/${props.currentPage === 1 ? 1 : props.currentPage - 1}`}>
-            <i className="bi bi-chevron-left" />
-          </Link>
+            <Link href={`${baseUri}/${props.currentPage === 1 ? 1 : props.currentPage - 1}`}>
+              <i className="bi bi-chevron-left" />
+            </Link>
           ))}
       </li>
 
@@ -76,15 +76,15 @@ export const Pagination = (props: Props) => {
         return (
           <li key={`pagination_${className}_${index}`}>
             {typeof i === 'string' && <i className={styles.disabled}>...</i>}
-            {typeof i === 'number' && 
+            {typeof i === 'number' &&
               (props.getLinkProps ? (
                 <Link href={props.getLinkProps(i)} className={props.currentPage === i ? styles.selected : ''}>
                   {i}
                 </Link>
               ) : (
-              <Link href={`${baseUri}/${i}`} className={props.currentPage === i ? styles.selected : ''}>
-                {i}
-              </Link>
+                <Link href={`${baseUri}/${i}`} className={props.currentPage === i ? styles.selected : ''}>
+                  {i}
+                </Link>
               ))}
           </li>
         )
@@ -92,15 +92,15 @@ export const Pagination = (props: Props) => {
 
       <li>
         {props.currentPage === totalPages && <i className={`${styles.disabled} bi bi-chevron-right`} />}
-        {props.currentPage < totalPages && 
+        {props.currentPage < totalPages &&
           (props.getLinkProps ? (
             <Link href={props.getLinkProps(props.currentPage + 1)}>
               <i className="bi bi-chevron-right" />
             </Link>
           ) : (
-          <Link href={`${baseUri}/${props.currentPage === totalPages ? totalPages : props.currentPage + 1}`}>
-            <i className="bi bi-chevron-right" />
-          </Link>
+            <Link href={`${baseUri}/${props.currentPage === totalPages ? totalPages : props.currentPage + 1}`}>
+              <i className="bi bi-chevron-right" />
+            </Link>
           ))}
       </li>
     </ul>

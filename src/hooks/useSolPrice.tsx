@@ -64,4 +64,4 @@ export function useSolPrice(interval: number = 12000) {
   }
 
   return price
-} 
+}

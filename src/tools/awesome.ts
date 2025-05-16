@@ -21,7 +21,8 @@ async function run() {
     'Explore the latest resources and get familiar with the core concepts and fundamentals. Learning from tutorials, courses, books, videos or code challenges and start building!'
   readme += '\n\n'
 
-  readme += 'Want to see more awesomeness? Check out our [website](https://www.usesolana.xyz/) or follow us on [Twitter](https://twitter.com/useSolana).'
+  readme +=
+    'Want to see more awesomeness? Check out our [website](https://www.usesolana.xyz/) or follow us on [Twitter](https://twitter.com/useSolana).'
   readme += '\n\n'
 
   // Generate contents

@@ -83,36 +83,36 @@ export async function GetAverage(period: 'hour' | 'day', limit: number = 24, net
 
     // Create mock data in the format expected by the Heatmap component
     const mockData: GasFee[] = []
-    
+
     // Days of the week abbreviated
     const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
     const currentDate = new Date()
     const currentDay = currentDate.getDay() // 0-6 where 0 is Sunday
-    
+
     // Generate 24 hours of data for each day of the week
     for (let d = 0; d < 7; d++) {
       for (let h = 0; h < 24; h++) {
         // Add some randomness for each day of the week
         const dayFactor = d * 0.05 // 5% variation per day
         const hourFactor = Math.abs((h - 12) / 24) * 0.5 // Higher fees during midday
-        
+
         // Generate a date for this hour and day
         const date = new Date(currentDate)
         date.setDate(date.getDate() - ((currentDay + 6) % 7) + d)
         date.setHours(h, 0, 0, 0)
-        
+
         // Use performance sample data if available for this hour, or generate random but realistic data
         // Each day should have different values for the same hour
-        const defaultTxCount = 1000 + (d * 50) + (Math.sin(h / 3.82) * 500)
+        const defaultTxCount = 1000 + d * 50 + Math.sin(h / 3.82) * 500
         const sampleForHour = performanceSamples.find((s, idx) => idx % 24 === h)
-        const txCount = sampleForHour ? sampleForHour.numTransactions * (0.8 + (d * 0.05)) : defaultTxCount
-        
+        const txCount = sampleForHour ? sampleForHour.numTransactions * (0.8 + d * 0.05) : defaultTxCount
+
         // Calculate a median fee based on transaction count
         // Solana base fees are ~5000 lamports, with slight variations based on network congestion
         const baseFee = 5000
         const congestionMultiplier = 1 + (txCount / 10000) * (0.1 + dayFactor + hourFactor)
         const medianFee = Math.floor(baseFee * congestionMultiplier)
-        
+
         mockData.push({
           blockNr: date.getTime(), // Use timestamp as block number
           period: date.toISOString(),
@@ -121,19 +121,19 @@ export async function GetAverage(period: 'hour' | 'day', limit: number = 24, net
           gasUsed: 0,
           min: baseFee,
           median: medianFee,
-          solPrice
+          solPrice,
         })
       }
     }
-    
+
     return mockData
   } catch (error) {
     console.error('Error:', error)
-    
+
     // If all fails, return minimal mock data
     const mockFees: GasFee[] = []
     const now = new Date()
-    
+
     // Create at least one data point for the current hour/day
     mockFees.push({
       blockNr: now.getTime(),
@@ -143,9 +143,9 @@ export async function GetAverage(period: 'hour' | 'day', limit: number = 24, net
       gasUsed: 0,
       min: 5000,
       median: 5000,
-      solPrice: 20
+      solPrice: 20,
     })
-    
+
     return mockFees
   }
 }
