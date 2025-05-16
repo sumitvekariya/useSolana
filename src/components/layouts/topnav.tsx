@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { ReactNode, useEffect, useState } from 'react'
 import styles from './topnav.module.scss'
 import { Alert } from 'components/alert'
 import { Header } from './header'
@@ -19,11 +19,48 @@ type Props = {
 }
 
 export function TopnavLayout(props: Props) {
-  let className = `${styles.container} light` // theme switcher (light/dark)
+  const [theme, setTheme] = useState('light')
+
+  useEffect(() => {
+    // Check localStorage for saved theme
+    const savedTheme = localStorage.getItem('theme')
+    if (savedTheme === 'dark' || savedTheme === 'light') {
+      setTheme(savedTheme)
+      // Also set it on the document element to ensure global styles work
+      document.documentElement.className = savedTheme
+    }
+
+    // Listen for theme changes from other components
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === 'theme' && e.newValue) {
+        setTheme(e.newValue)
+        document.documentElement.className = e.newValue
+      }
+    }
+
+    // For same-tab communication
+    const handleThemeChange = () => {
+      const currentTheme = localStorage.getItem('theme')
+      if (currentTheme) {
+        setTheme(currentTheme)
+        document.documentElement.className = currentTheme
+      }
+    }
+
+    window.addEventListener('storage', handleStorageChange)
+    document.addEventListener('themeChanged', handleThemeChange)
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange)
+      document.removeEventListener('themeChanged', handleThemeChange)
+    }
+  }, [])
+
+  let className = `${styles.container}`
   if (props.className) className += ` ${props.className}`
 
   return (
-    <div className={className}>
+    <div className={className} data-theme={theme}>
       {/* <Alert
         text="Test your Web3 knowledge and claim your ZK certifications @ the new useWeb3 Academy"
         url="https://academy.useweb3.xyz/"
@@ -41,11 +78,12 @@ export function TopnavLayout(props: Props) {
 
           {props.children}
 
-          {!props.hideNewsletter && (
+          {/* TODO: Add back in */}
+          {/* {!props.hideNewsletter && (
             <div className={styles.center}>
               <Newsletter className={styles.newsletter} />
             </div>
-          )}
+          )} */}
         </div>
       </main>
 

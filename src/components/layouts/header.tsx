@@ -1,7 +1,7 @@
 import styles from './header.module.scss'
 import { Link } from 'components/link'
 import Icon from 'assets/images/icon.svg'
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { Searchbar } from './searchbar'
 import { useOnOutsideClick } from 'hooks/useOnOutsideClick'
 import { MobileSubmenu } from './submenu'
@@ -33,7 +33,51 @@ export function Header(props: Props) {
 
   const ref = useRef(null)
   const [foldout, setFoldout] = useState('')
+  const [isDarkMode, setIsDarkMode] = useState(false)
   useOnOutsideClick(ref, () => setFoldout(''))
+
+  useEffect(() => {
+    // Check if user has a saved theme preference
+    const savedTheme = localStorage.getItem('theme')
+    if (savedTheme === 'dark') {
+      setIsDarkMode(true)
+      document.documentElement.className = 'dark'
+
+      // Force body style update
+      document.body.style.backgroundColor = '#121218'
+      document.body.style.color = '#F9FAFB'
+    } else {
+      setIsDarkMode(false)
+      document.documentElement.className = 'light'
+
+      // Reset body styles
+      document.body.style.backgroundColor = ''
+      document.body.style.color = ''
+    }
+  }, [])
+
+  function toggleTheme() {
+    const newTheme = !isDarkMode ? 'dark' : 'light'
+    setIsDarkMode(!isDarkMode)
+
+    // Apply theme to HTML element
+    document.documentElement.className = newTheme
+
+    // Store theme preference
+    localStorage.setItem('theme', newTheme)
+
+    // Force body style update
+    if (newTheme === 'dark') {
+      document.body.style.backgroundColor = '#121218'
+      document.body.style.color = '#F9FAFB'
+    } else {
+      document.body.style.backgroundColor = ''
+      document.body.style.color = ''
+    }
+
+    // Dispatch custom event for same-tab communication
+    document.dispatchEvent(new Event('themeChanged'))
+  }
 
   function onClose() {
     setFoldout('')
@@ -101,6 +145,9 @@ export function Header(props: Props) {
         </ul>
 
         <ul className={styles.icons}>
+          <li onClick={toggleTheme} title={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}>
+            <i className={`bi ${isDarkMode ? 'bi-sun' : 'bi-moon'}`} />
+          </li>
           <li className={styles.emoji}>
             <Link href="/gas">⛽</Link>
           </li>
@@ -110,9 +157,6 @@ export function Header(props: Props) {
           <li className={styles.hamburger} onClick={() => setFoldout(foldout !== 'submenu' ? 'submenu' : '')}>
             <i className="bi bi-list" />
           </li>
-          {/* <li className={styles.primary} onClick={() => setFoldout(foldout !== 'account' ? 'account' : '')}>
-            <i className="bi bi-person-circle" />
-          </li> */}
         </ul>
       </div>
 

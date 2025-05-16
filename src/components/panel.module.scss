@@ -14,7 +14,7 @@
     position: relative;
     top: -4px;
     left: -4px;
-    border: 2px solid #3c4a59; // TODO
+    border: 2px solid var(--color-primary);
     padding: 2px 4px;
   }
 }
@@ -40,7 +40,7 @@
 
 .fill {
   > .border {
-    background: #fff; // TODO
+    background: var(--color-background);
   }
 }
 
@@ -73,17 +73,17 @@
 
 .primary {
   @extend .panel;
-  background: #c1e5fb; // TODO
+  background: var(--color-primary-100);
 }
 
 .secondary {
   @extend .panel;
-  background: #b6c6c4; // TODO
+  background: var(--color-secondary-100);
 }
 
 .tertiary {
   @extend .panel;
-  background: #cdcee3; // TODO
+  background: var(--color-neutral-100);
 }
 
 .neutral {
@@ -204,7 +204,7 @@
 
   .logo {
     flex-shrink: 0;
-    background: var(--color-neutral-100); // TODO
+    background: var(--color-primary-100);
     width: 64px;
     height: 64px;
     border-radius: 50%;
@@ -300,7 +300,7 @@
   .dot {
     height: 0.75rem;
     width: 0.75rem;
-    background: var(--color-neutral-100); // TODO
+    background: var(--color-secondary);
     border-radius: 50%;
   }
 }

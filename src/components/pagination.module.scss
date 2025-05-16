@@ -8,13 +8,13 @@
   li {
     display: flex;
     align-items: center;
-    border: 1px solid #cdcee3; // TODO
+    border: 1px solid var(--color-primary-100);
 
     a {
       padding: $gap-8;
 
       &.selected {
-        background: #cdcee3; // TODO
+        background: var(--color-primary-100);
       }
 
       &:hover,

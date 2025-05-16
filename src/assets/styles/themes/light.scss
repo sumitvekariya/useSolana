@@ -1,16 +1,16 @@
 $colors: (
   // Primary colors
-  'primary': #000d99,
-  'primary-500': #004fff,
-  'primary-100': #99ccff,
+  'primary': #9945FF,
+  'primary-500': #9945FF,
+  'primary-100': #C9A5FF,
   // Secondary colors
-  'secondary': #eba134,
-  'secondary-500': #fac748,
-  'secondary-100': #ffe3b2,
+  'secondary': #14F195,
+  'secondary-500': #14F195,
+  'secondary-100': #A8F8DA,
   // Neutral colors
-  'neutral': #151a26,
-  'neutral-500': #6a707f,
-  'neutral-100': #e9ecf1,
+  'neutral': #151A26,
+  'neutral-500': #6A707F,
+  'neutral-100': #E9ECF1,
   // Error, warning, success, info colors
   'info': #d0f0fd,
   'info-dark': #04283f,
@@ -22,8 +22,8 @@ $colors: (
   'error-dark': #4c0c1c,
   // MISC
   'background': white,
-  'text': black,
+  'text': #151A26,
   'text-inverse': white,
   'card-bg-color': white,
-  'card-title-text': black
+  'card-title-text': #151A26
 );

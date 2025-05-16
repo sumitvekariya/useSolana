@@ -3,89 +3,127 @@
 .footer {
   display: flex;
   justify-content: center;
-  background: #3c4a59; // TODO
-  color: #fff;
+  background: #D9C6FF; /* Lighter lavender color */
+  color: var(--color-neutral);
+}
 
-  a {
-    color: var(--color-neutral-100);
+/* Explicitly target the footer in dark mode using multiple selectors */
+html.dark .footer,
+[data-theme="dark"] .footer {
+  background: #1E1E2D; /* Slightly lighter than main background */
+  color: #F9FAFB;
+  border-top: 1px solid #40407A; /* More visible border */
+}
 
-    &:hover {
-      color: #fff;
+.footer a {
+  color: var(--color-neutral-500);
+
+  &:hover {
+    color: var(--color-secondary);
+  }
+}
+
+/* Explicitly target the footer in dark mode using multiple selectors */
+html.dark .footer a,
+[data-theme="dark"] .footer a {
+  color: #CAB3FF; /* Lighter purple for better contrast */
+  
+  &:hover {
+    color: var(--color-secondary);
+  }
+}
+
+html.dark .footer .header,
+[data-theme="dark"] .footer .header {
+  color: #FFFFFF; /* Brighter white for headers */
+}
+
+html.dark .footer li,
+[data-theme="dark"] .footer li {
+  color: #E1E1E6; /* Light gray for better readability */
+}
+
+html.dark .footer hr,
+[data-theme="dark"] .footer hr {
+  border-bottom: 1px solid #40407A;
+}
+
+html.dark .footer .credits,
+[data-theme="dark"] .footer .credits {
+  color: #CAB3FF; /* Lighter purple for better contrast */
+}
+
+.footer .inner {
+  display: flex;
+  flex-direction: column;
+  margin: 0 $gap-32;
+  max-width: $max-content-width;
+  width: 100%;
+
+  @media (max-width: $screen-640) {
+    margin: 0 $gap-16;
+  }
+
+  .navigation {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin: $gap-40 0;
+    gap: $gap-16;
+
+    @media (max-width: $screen-640) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    ul {
+      list-style-type: none;
+
+      .header {
+        font-weight: $font-bold;
+        text-transform: uppercase;
+
+        &::after {
+          content: '';
+          display: block;
+          margin: $gap-8 0 $gap-16 0;
+          width: $gap-16;
+          height: 2px;
+          background: var(--color-secondary);
+        }
+      }
+
+      li {
+        margin: $gap-8 0;
+      }
     }
   }
 
-  .inner {
+  hr {
+    border-bottom: 1px solid var(--color-primary-100);
+  }
+
+  .links {
     display: flex;
-    flex-direction: column;
-    margin: 0 $gap-32;
-    max-width: $max-content-width;
-    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    gap: $gap-16;
+    padding: 0;
+  }
 
-    @media (max-width: $screen-640) {
-      margin: 0 $gap-16;
-    }
+  .credits {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: $gap-40 0;
+  }
 
-    .navigation {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      margin: $gap-40 0;
-      gap: $gap-16;
+  .credits ul {
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    gap: $gap-16;
 
-      @media (max-width: $screen-640) {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      ul {
-        list-style-type: none;
-
-        .header {
-          font-weight: $font-bold;
-          text-transform: uppercase;
-
-          &::after {
-            content: '';
-            display: block;
-            margin: $gap-8 0 $gap-16 0;
-            width: $gap-16;
-            height: 2px;
-            background: var(--color-neutral-100);
-          }
-        }
-
-        li {
-          margin: $gap-8 0;
-        }
-      }
-    }
-
-    hr {
-      border-bottom: 1px solid var(--color-neutral-100); // TODO
-    }
-
-    .links {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: $gap-16;
-      padding: 0;
-    }
-
-    .credits {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin: $gap-40 0;
-
-      ul {
-        display: flex;
-        align-items: center;
-        list-style-type: none;
-        gap: $gap-16;
-
-        .icon {
-          font-size: $size-20;
-        }
-      }
+    .icon {
+      font-size: $size-20;
     }
   }
 }

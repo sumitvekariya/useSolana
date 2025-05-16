@@ -66,9 +66,9 @@ export const Pagination = (props: Props) => {
               <i className="bi bi-chevron-left" />
             </Link>
           ) : (
-            <Link href={`${baseUri}/${props.currentPage === 1 ? 1 : props.currentPage - 1}`}>
-              <i className="bi bi-chevron-left" />
-            </Link>
+          <Link href={`${baseUri}/${props.currentPage === 1 ? 1 : props.currentPage - 1}`}>
+            <i className="bi bi-chevron-left" />
+          </Link>
           ))}
       </li>
 
@@ -82,9 +82,9 @@ export const Pagination = (props: Props) => {
                   {i}
                 </Link>
               ) : (
-                <Link href={`${baseUri}/${i}`} className={props.currentPage === i ? styles.selected : ''}>
-                  {i}
-                </Link>
+              <Link href={`${baseUri}/${i}`} className={props.currentPage === i ? styles.selected : ''}>
+                {i}
+              </Link>
               ))}
           </li>
         )
@@ -98,9 +98,9 @@ export const Pagination = (props: Props) => {
               <i className="bi bi-chevron-right" />
             </Link>
           ) : (
-            <Link href={`${baseUri}/${props.currentPage === totalPages ? totalPages : props.currentPage + 1}`}>
-              <i className="bi bi-chevron-right" />
-            </Link>
+          <Link href={`${baseUri}/${props.currentPage === totalPages ? totalPages : props.currentPage + 1}`}>
+            <i className="bi bi-chevron-right" />
+          </Link>
           ))}
       </li>
     </ul>

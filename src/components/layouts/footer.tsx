@@ -55,7 +55,7 @@ export function Footer(props: Props) {
             </Link>
           </p>
           <p>
-            <Link href="https://github.com/wslyvh/useWeb3/tree/main/content">
+            <Link href="https://github.com/sumitvekariya/useSolana/tree/main/content">
               Submit Resources <i className="bi bi-arrow-up-right" />
             </Link>
           </p>
@@ -66,21 +66,21 @@ export function Footer(props: Props) {
         <div className={styles.credits}>
           <ul>
             <li className={styles.icon}>
-              <Link href="https://github.com/wslyvh/useWeb3">
+              <Link href="https://github.com/sumitvekariya/useSolana">
                 <i className="bi bi-github" />
               </Link>
             </li>
             <li className={styles.icon}>
-              <Link href="https://twitter.com/useWeb3">
+              <Link href="https://twitter.com/sarkazein7">
                 <i className="bi bi-twitter" />
               </Link>
             </li>
             <li>
-              by <Link href="https://twitter.com/wslyvh">@wslyvh</Link>
+              by <Link href="https://twitter.com/sarkazein7">@sarkazein7</Link>
             </li>
           </ul>
 
-          <Link href="https://vercel.com/?utm_source=useWeb3&amp;utm_campaign=oss">
+          <Link href="https://vercel.com/?utm_source=useSolana&amp;utm_campaign=oss">
             <Image src="https://www.datocms-assets.com/31049/1618983297-powered-by-vercel.svg" alt="Powered by Vercel" height={32} width={120} />
           </Link>
         </div>

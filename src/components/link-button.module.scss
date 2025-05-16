@@ -7,11 +7,11 @@
 }
 
 .primary {
-  --block-accent-color: #004fff; // primary-500
+  --block-accent-color: var(--color-primary);
 }
 
 .secondary {
-  --block-accent-color: #eba134; // secondary
+  --block-accent-color: var(--color-secondary);
 }
 
 .twitter {
@@ -25,5 +25,5 @@
 
 .website {
   --block-accent-color: #ffffff;
-  color: #151a26 !important;
+  color: var(--color-neutral) !important;
 }

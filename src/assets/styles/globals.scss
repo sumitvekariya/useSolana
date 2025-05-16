@@ -12,7 +12,16 @@ body {
   font-weight: $font-normal;
   font-size: $size-16;
   color: var(--color-neutral);
-  --block-accent-color: #eba134;
+  --block-accent-color: var(--color-secondary);
+}
+
+html.dark body {
+  background-color: #121218;
+  color: #F9FAFB;
+}
+
+html.dark {
+  background-color: #121218;
 }
 
 * {
@@ -27,10 +36,10 @@ body {
 a {
   color: inherit;
   text-decoration: none;
-  color: var(--color-neutral); // TODO
+  color: var(--color-primary);
 
   &:hover {
-    color: #3c4a59; // TODO
+    color: var(--color-primary-500);
   }
 }
 
@@ -98,7 +107,7 @@ article {
   code {
     padding: $gap-8;
     font-family: $font-secondary;
-    background: #eee;
+    background: var(--color-neutral-100);
   }
 
   ul,
@@ -124,5 +133,23 @@ article {
     list-style-type: lower-latin;
     margin-top: $gap-8;
     margin-bottom: $gap-8;
+  }
+}
+
+.dark {
+  // Improve dark mode code blocks
+  .markdown code {
+    background: var(--color-neutral-100);
+    color: var(--color-text);
+  }
+
+  // Improve links in dark mode
+  a {
+    color: var(--color-primary);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--color-primary-500);
+    }
   }
 }
