@@ -26,5 +26,5 @@ export interface GasFee {
   gasUsed: number
   min: number
   median: number
-  ethPrice: number
+  solPrice: number
 }

@@ -12,8 +12,8 @@ import Link from 'next/link'
 import { GasTable } from 'components/gas-table'
 import { TopnavLayout } from 'components/layouts/topnav'
 import { Panel } from 'components/panel'
-import { useEtherPrice } from 'hooks/useEtherPrice'
-import { useGasPrice } from 'hooks/useGasPrice'
+import { useSolPrice } from 'hooks/useSolPrice'
+import { useTransactionFee } from 'hooks/useTransactionFee'
 import { GasNotifications } from 'components/gas-notifications'
 import { GetAverage, GetGasData } from 'services/indexer'
 import { Featured } from 'components/featured'
@@ -26,24 +26,25 @@ interface Props {
 }
 
 export default function Index(props: Props) {
-  const { gasPrice, priorityFee } = useGasPrice()
-  const etherPrice = useEtherPrice()
-  const title = gasPrice > 0 ? `${gasPrice} Gwei` : 'Ethereum Gas tracker'
+  const { feeRate, priorityFee } = useTransactionFee()
+  const solPrice = useSolPrice()
+  const title = feeRate > 0 ? `${feeRate} Lamports` : 'Solana Fee Tracker'
 
   return (
     <NavigationProvider categories={props.categories}>
-      <SEO title={title} divider="⛽" description="Monitor and track the Ethereum gas price to reduce transaction fees save money." />
+      <SEO title={title} divider="⛽" description="Monitor and track the Solana transaction fees to reduce costs and save money." />
       <TopnavLayout
         className={styles.container}
-        title="Ethereum Gas tracker"
-        action={{ href: 'https://www.ethgastracker.com/docs', text: 'Get API Access' }}>
+        title="Solana Fee Tracker"
+        action={{ href: 'https://www.solanatracker.com/docs', text: 'Get API Access' }}
+        hideNewsletter={true}>
         <section>
           <Featured className={styles.featured} double>
             <Panel type="primary" fill stretch>
               <div style={{ padding: '8px' }}>
                 <h4>⛽ Current</h4>
                 <br />
-                <span>{gasPrice > 0 ? gasPrice : '-'} Max fee</span>
+                <span>{feeRate > 0 ? feeRate : '-'} Base fee</span>
                 <br />
                 <span>{priorityFee > 0 ? priorityFee : '-'} priority</span>
               </div>
@@ -60,13 +61,13 @@ export default function Index(props: Props) {
 
         <article>
           <p>
-            Gas is a fundamental element for any public blockchain network such as Ethereum. Understanding how it works is key to efficiently use and
-            develop on Ethereum and can greatly reduce the gas fees, required to deploy and transact with the network.
+            Transaction fees are a fundamental element for any public blockchain network such as Solana. Understanding how they work is key to
+            efficiently use and develop on Solana and can greatly reduce the costs required to deploy and transact with the network.
           </p>
         </article>
 
         <section>
-          <h2>Median Gas prices</h2>
+          <h2>Median Fee Rates</h2>
           <TrendChart data={props.gasData.fees} />
         </section>
 
@@ -75,56 +76,51 @@ export default function Index(props: Props) {
           <Heatmap data={props.heatmap} />
         </section>
 
-        <GasNotifications />
+        {/* TODO: Add back in */}
+        {/* <GasNotifications /> */}
 
         <article className="markdown">
-          <h2>Average Ethereum Transaction costs</h2>
-          <GasTable gasPrice={gasPrice} etherPrice={etherPrice} />
+          <h2>Average Solana Transaction Costs</h2>
+          <GasTable gasPrice={feeRate} solPrice={solPrice} />
         </article>
 
         <article className={`${styles.gas} markdown`}>
           <h3>Other Networks</h3>
           <ul>
             <li>
-              <Link href="/gas">Ethereum Gas Tracker</Link>
+              <Link href="/gas">Solana Fee Tracker</Link>
             </li>
             <li>
-              <Link href="/gas/arbitrum">Arbitrum Gas Tracker</Link>
+              <Link href="/gas/devnet">Solana Devnet Fee Tracker</Link>
             </li>
             <li>
-              <Link href="/gas/optimism">Optimism Gas Tracker</Link>
-            </li>
-            <li>
-              <Link href="/gas/base">Base Gas Tracker</Link>
+              <Link href="/gas/testnet">Solana Testnet Fee Tracker</Link>
             </li>
           </ul>
         </article>
 
         <article className="markdown">
-          <h3>Ethereum Gas explained</h3>
+          <h3>Solana Fees Explained</h3>
           <p>
-            Gas is an important concept within the Web3 world. It is the virtual fuel required to execute transactions on the network. Similar to how
-            a car needs gasoline to drive. Most public blockchains denominate these transaction fees in their native currency.
+            Transaction fees are an important concept within the Web3 world. They are the costs required to execute transactions on the network.
+            Similar to how a car needs gasoline to drive. Most public blockchains denominate these transaction fees in their native currency.
           </p>
-          <p>There are a few crucial aspects of using gas or transaction fees in public, permissionless networks:</p>
+          <p>There are a few crucial aspects of transaction fees in public, permissionless networks:</p>
           <ol>
             <li>
-              Every transaction published on a blockchain imposes a cost of downloading, executing and verify it. People who run a node (validators)
-              spend time, money and effort to do this for which they are compensated. Transaction fees are rewarded to them for providing these
-              services.
+              Every transaction published on a blockchain imposes a cost of downloading, executing and verifying it. People who run a node
+              (validators) spend time, money and effort to do this for which they are compensated. Transaction fees are rewarded to them for providing
+              these services.
             </li>
             <li>
-              A fee market allows prioritization of transactions by &apos;tipping&apos; the validators for processing specific transactions more
+              A fee market allows prioritization of transactions by adding a priority fee for validators to process specific transactions more
               quickly.
             </li>
-            <li>
-              For smart contract platforms, it avoids computational waste in code, by setting a limit to how many steps of code executions it can
-              perform within a transaction.
-            </li>
+            <li>For smart contract platforms, it avoids computational waste in code, by setting limits to resource usage when executing programs.</li>
             <li>
               Additionally, it prevents accidental or hostile infinite loops, e.g. denial of service (&apos;DDoS&apos;) attacks. In a DDoS attack, an
               attacker tries to flood the network by spamming empty transactions. A fee market ensures that doing such attacks, for an extended period
-              of time, to become expensive.
+              of time, becomes expensive.
             </li>
           </ol>
         </article>
@@ -133,10 +129,10 @@ export default function Index(props: Props) {
           <h3>Further reading</h3>
           <ul>
             <li>
-              <Link href="https://ethereum.org/en/developers/docs/gas/">https://ethereum.org/en/developers/docs/gas/</Link>
+              <Link href="https://docs.solana.com/transaction_fees">https://docs.solana.com/transaction_fees</Link>
             </li>
             <li>
-              <Link href="https://www.ethgastracker.com/">https://www.ethgastracker.com/</Link>
+              <Link href="https://www.solanatracker.com/">https://www.solanatracker.com/</Link>
             </li>
           </ul>
         </article>

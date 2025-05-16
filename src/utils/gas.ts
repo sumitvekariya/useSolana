@@ -1,8 +1,8 @@
 import fetch from 'cross-fetch'
-import { formatUnits } from '@ethersproject/units'
 
-export function toRoundedGwei(value: any) {
-  return Math.round(Number(formatUnits(value ?? 0, 'gwei')) * 100) / 100
+export function toRoundedLamports(value: any) {
+  // Convert lamports to SOL (1 SOL = 1,000,000,000 lamports)
+  return Math.round((Number(value ?? 0) / 1e9) * 100) / 100
 }
 
 export function getMin(numbers: Array<number>) {
@@ -31,9 +31,9 @@ export function getMedian(numbers: Array<number>) {
   return numbers.length % 2 !== 0 ? numbers[middle] : (numbers[middle - 1] + numbers[middle]) / 2
 }
 
-export async function getEthPrice() {
+export async function getSolPrice() {
   try {
-    const response = await fetch('https://api.coinbase.com/v2/exchange-rates?currency=ETH')
+    const response = await fetch('https://api.coinbase.com/v2/exchange-rates?currency=SOL')
     const body = await response.json()
 
     if (body.data.rates.USD) {
@@ -44,7 +44,7 @@ export async function getEthPrice() {
   }
 
   try {
-    const response = await fetch('https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD')
+    const response = await fetch('https://min-api.cryptocompare.com/data/price?fsym=SOL&tsyms=USD')
     const body = await response.json()
 
     if (body.USD) {

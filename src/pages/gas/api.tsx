@@ -8,7 +8,7 @@ import { MarkdownContentService } from 'services/content'
 import { TopnavLayout } from 'components/layouts/topnav'
 import styles from '../pages.module.scss'
 import { Panel } from 'components/panel'
-import { useGasPrice } from 'hooks/useGasPrice'
+import { useTransactionFee } from 'hooks/useTransactionFee'
 import { GasNotifications } from 'components/gas-notifications'
 
 interface Props {
@@ -16,9 +16,9 @@ interface Props {
 }
 
 export default function Index(props: Props) {
-  const { gasPrice, priorityFee } = useGasPrice()
-  const title = 'Ethereum Gas Tracker API'
-  const description = 'Get access to Ethereum gas price data through our Gas Tracker API.'
+  const { feeRate, priorityFee } = useTransactionFee()
+  const title = 'Solana Fee Tracker API'
+  const description = 'Get access to Solana transaction fee data through our Fee Tracker API.'
 
   return (
     <NavigationProvider categories={props.categories}>
@@ -27,7 +27,7 @@ export default function Index(props: Props) {
         <section>
           <p>
             <Panel fill>
-              ⛽ {gasPrice > 0 ? gasPrice : '-'} Max fee | {priorityFee > 0 ? priorityFee : '-'} priority
+              ⛽ {feeRate > 0 ? feeRate : '-'} Base fee | {priorityFee > 0 ? priorityFee : '-'} priority
             </Panel>
           </p>
         </section>
