@@ -21,26 +21,11 @@ module.exports = {
   },
   async redirects() {
     return [
-      {
-        source: '/gas',
-        destination: 'https://www.ethgastracker.com/',
-        permanent: true,
-      },
-      {
-        source: '/gas/arbitrum',
-        destination: 'https://www.ethgastracker.com/network/arbitrum',
-        permanent: true,
-      },
-      {
-        source: '/gas/base',
-        destination: 'https://www.ethgastracker.com/network/base',
-        permanent: true,
-      },
-      {
-        source: '/gas/optimism',
-        destination: 'https://www.ethgastracker.com/network/optimism',
-        permanent: true,
-      },
+      // {
+      //   source: '/gas',
+      //   destination: 'https://dune.com/lily212/solana-fee-tracker',
+      //   permanent: true,
+      // },
     ]
   },
 }

@@ -1,5 +1,5 @@
 {
-  "name": "use-web3",
+  "name": "use-solana",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -23,15 +23,16 @@
     "awesome": "ts-node src/tools/awesome"
   },
   "dependencies": {
-    "@ethersproject/providers": "^5.7.2",
-    "@ethersproject/units": "^5.5.0",
+    "@solana/web3.js": "^1.75.0",
+    "@solana/spl-token": "^0.3.7",
+    "@solana/wallet-adapter-react": "^0.15.32",
+    "@solana/wallet-adapter-react-ui": "^0.9.31",
+    "@solana/wallet-adapter-wallets": "^0.19.16",
     "@supabase/supabase-js": "^2.34.0",
     "@svgr/webpack": "^6.2.1",
-    "@walletconnect/web3-provider": "^1.7.1",
     "airtable": "^0.11.1",
     "apexcharts": "^3.43.0",
     "bootstrap-icons": "^1.7.2",
-    "ethers": "^6.7.1",
     "googleapis": "^110.0.0",
     "gray-matter": "^4.0.3",
     "he": "^1.2.0",
@@ -51,8 +52,7 @@
     "sass": "^1.41.1",
     "slugify": "^1.6.1",
     "snoowrap": "^1.23.0",
-    "twitter-api-v2": "^1.15.0",
-    "web3modal": "^1.9.5"
+    "twitter-api-v2": "^1.15.0"
   },
   "devDependencies": {
     "@types/he": "^1.1.2",
