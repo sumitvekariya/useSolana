@@ -3,21 +3,21 @@ import styles from './gas-table.module.scss'
 
 interface Props {
   gasPrice: number
-  etherPrice: number
+  solPrice: number
   className?: string
 }
 
 const transactions = [
-  { name: 'ETH Transfer', cost: 21000 },
-  { name: 'ERC20 Approval', cost: 45000 },
-  { name: 'ERC20 Token Transfer', cost: 65000 },
-  { name: 'ERC721 NFT Transfer', cost: 85000 },
-  { name: 'Uniswap V2 Swap', cost: 150000 },
-  { name: 'Uniswap V3 Swap', cost: 185000 },
-  { name: 'OpenSea Sale', cost: 205000 },
-  { name: 'Uniswap V3 Liquidity', cost: 215000 },
-  { name: 'L2 Deposits (Arbitrum, zkSync, Polygon,..)', cost: 250000 },
-  { name: 'ENS Registration', cost: 265000 },
+  { name: 'SOL Transfer', cost: 5000 },
+  { name: 'SPL Token Approval', cost: 10000 },
+  { name: 'SPL Token Transfer', cost: 15000 },
+  { name: 'NFT Transfer', cost: 25000 },
+  { name: 'Raydium Swap', cost: 35000 },
+  { name: 'Jupiter Swap', cost: 45000 },
+  { name: 'Magic Eden Sale', cost: 65000 },
+  { name: 'Liquidity Provision', cost: 75000 },
+  { name: 'Wormhole Bridge Transfer', cost: 100000 },
+  { name: 'SNS Name Registration', cost: 120000 },
 ]
 
 export function GasTable(props: Props) {
@@ -25,21 +25,21 @@ export function GasTable(props: Props) {
   if (props.className) className += ` ${props.className}`
   const [customGas, setCustomGas] = useState(0)
 
-  function getUsdValue(priceInGwei: number) {
-    return ((priceInGwei * props.gasPrice) / 1e9) * props.etherPrice
+  function getUsdValue(priceInLamports: number) {
+    return ((priceInLamports * props.gasPrice) / 1e9) * props.solPrice
   }
 
   return (
     <article className={className}>
       <small className="muted">
-        * At current gas price of <strong>{props.gasPrice} gwei</strong>.
+        * At current fee of <strong>{props.gasPrice} lamports</strong>.
       </small>
 
       <table>
         <thead>
           <tr>
             <th>Transaction</th>
-            <th>Gwei</th>
+            <th>Lamports</th>
             <th>$ USD</th>
           </tr>
         </thead>
@@ -60,7 +60,7 @@ export function GasTable(props: Props) {
                 className={styles.customInput}
                 onChange={(e) => setCustomGas(Number(e.target.value))}
                 autoComplete="off"
-                placeholder="Gas cost in gwei"
+                placeholder="Fee cost in lamports"
               />
             </td>
             <td className={styles.right}>${getUsdValue(customGas).toFixed(2)}</td>
