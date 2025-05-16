@@ -1,6 +1,6 @@
 {
     "id": "tools",
     "title": "Tools",
-    "description": "",
+    "description": "A curated list of tools for Solana development, including utilities for Rust, Anchor, and the Solana ecosystem.",
     "emoji": "🛠️"
 }

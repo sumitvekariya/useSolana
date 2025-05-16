@@ -1,6 +1,6 @@
 {
     "id": "guides",
     "title": "Guides",
-    "description": "These guides provide a more structured approach to learning.",
+    "description": "These guides provide a more structured approach to learning Solana, Rust, Anchor, and Solana smart contract development.",
     "emoji": "📖" 
 }

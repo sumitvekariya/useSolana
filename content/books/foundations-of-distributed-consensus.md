@@ -2,7 +2,7 @@
 title: "Foundations of Distributed Consensus and Blockchains"
 description: "Learn the mathematical foundations of distributed consensus as well as how to construct consensus protocols and prove them secure."
 authors: ["Elaine Shi"]
-tags: ["Ethereum", "Smart Contracts", "PoS"]
+tags: ["Smart Contracts", "PoS"]
 languages: []
 url: "https://www.distributedconsensus.net/"
 dateAdded: 2023-12-17

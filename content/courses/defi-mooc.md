@@ -7,6 +7,7 @@ languages: []
 url: "https://defi-learning.org/"
 dateAdded: 2022-04-08
 level: "Beginner"
+featured: true
 ---
 
 The purpose of this class is to bring together students and interdisciplinary experts in Computer Science and Finance to discuss the emerging area of Decentralized Finance (or DeFi). DeFi has experienced an unprecedented growth, with hundreds of projects and a countless stream of financial, distributed systems, and blockchain innovations. The total value locked (TVL) in decentralized finance — a measure of the total value of assets committed to the DeFi ecosystem — has reached over $80 billion. When compared to the traditional centralized finance (CeFi), DeFi offers products and services serving similar financial goals, but critically innovates with novel capabilities such as instantaneous multi-billion USD flash loans. By utilizing blockchain and smart contract technologies, DeFi as a whole aims to provide a new platform for programmable, automated finance services that remove the reliance on central trust and intermediaries.
