@@ -36,7 +36,8 @@ export class MarkdownContentService implements ItemServiceInterface {
     const initial: { [key: string]: number } = {}
     const tags = items.map((i) => i.tags)
     const reduced = tags.flat().reduce((acc: { [key: string]: number }, tag: string) => {
-      acc[tag] ? (acc[tag] += 1) : (acc[tag] = 1)
+      const normalizedTag = tag.toLowerCase()
+      acc[normalizedTag] ? (acc[normalizedTag] += 1) : (acc[normalizedTag] = 1)
       return acc
     }, initial)
 
@@ -115,9 +116,8 @@ export class MarkdownContentService implements ItemServiceInterface {
 
   public async GetItemsByTag(tag: string): Promise<Array<ContentItem>> {
     const items = await this.GetItems()
-    return items.filter(
-      (i) => i.tags.some((x) => x.toLowerCase() === tag.toLowerCase()) || i.languages.some((x) => x.toLowerCase() === tag.toLowerCase())
-    )
+    const normalizedTag = tag.toLowerCase()
+    return items.filter((i) => i.tags.some((x) => x.toLowerCase() === normalizedTag) || i.languages.some((x) => x.toLowerCase() === normalizedTag))
   }
 
   private toItem(source: string, slug: string, cat: Category): ContentItem {

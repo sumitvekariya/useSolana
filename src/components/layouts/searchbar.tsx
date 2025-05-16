@@ -63,7 +63,10 @@ export function Searchbar(props: Props) {
         <ul className={styles.popular}>
           <li className={styles.header}>Popular search terms</li>
           <li onClick={() => (props.close ? props.close() : {})}>
-            <Link href="/search?q=Solidity">Solidity</Link>
+            <Link href="/search?q=Solana">Solidity</Link>
+          </li>
+          <li onClick={() => (props.close ? props.close() : {})}>
+            <Link href="/search?q=Solana">Rust</Link>
           </li>
           <li onClick={() => (props.close ? props.close() : {})}>
             <Link href="/search?q=NFT">NFTs</Link>
